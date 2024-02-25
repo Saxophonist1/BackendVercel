@@ -28,7 +28,7 @@ const portCarrito = 8000
 
 app.use(cors(
   {
-    origin:["https://projectvercel-mu.vercel.app"],
+    origin:["https://backend-vercel-beta.vercel.app"],
     methods:["POST","GET"],
     credentials:true
   }
