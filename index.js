@@ -19,12 +19,20 @@ const wrapAsync = require("./utils/functions")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const apiKey = require("./middlewares/apiKey.mw")
-const https = require("https")
+
 
 
 const { app: appCarrito, server: serverCarrito } = require('./bin/www')
 const portMainApp = process.env.PORT || 9020
 const portCarrito = 8000
+
+app.use(cors(
+  {
+    origin:["https://projectvercel-mu.vercel.app"],
+    methods:["POST","GET"],
+    credentials:true
+  }
+))
 
 const version = "v1"
 
@@ -241,13 +249,21 @@ app.use((req, res, next) => {
 app.use(errorHandler)
 
 /* LEVANTAR EL SERVIDOR */
-https.createServer({
-  cert:fs.readFileSync("daw.crt"),
-  key:fs.readFileSync("daw.key")
-},
-app).listen(portMainApp, portCarrito, () => {
+app.listen(portMainApp, portCarrito, async() => {
+  console.log(app.get("env"))
   console.log("https://localhost:" + portMainApp)
   logger.access.debug(`https://localhost:${portMainApp}`)
-  mongoConnection.establecerConexion()
-  console.log(`Carrito corriendo en http://localhost:${portCarrito}`)
+  try{ 
+        await conectarMongoDB() //KO Firewall Conselleria
+        .then(function(){
+            console.log("Conectado con MongoDB Atlas")
+        })
+        .catch(function(error){
+            console.log("ERROR ATLAS: " + error)
+            process.exit(0)    
+        })
+    }catch(err){
+        console.log(err)
+        process.exit(0)
+    }
 })
