@@ -22,6 +22,7 @@ const User = mongoose.model("User", userSchema)
 
 // Método para obtener el listado de empresas asociadas al usuario
 User.findEmpresas = async function() {
+    mongoose.establecerConexion()
     try {
         const empresas = await Empresa.find()
         return empresas
@@ -32,6 +33,7 @@ User.findEmpresas = async function() {
 
 // Registrar Usuarios
 User.create = async function (newUser, result) {
+    mongoose.establecerConexion()
     await newUser
         .save()
         .then(function (data) {
@@ -44,6 +46,7 @@ User.create = async function (newUser, result) {
 
 // Auxiliar para Login
 User.findByUsername = async function (username_param, result) {
+    mongoose.establecerConexion()
     const userFound = await User.findOne({ username: username_param })
     if (userFound) {
         result(userFound, null)
@@ -54,6 +57,7 @@ User.findByUsername = async function (username_param, result) {
 
 // Obtener todos los usuarios
 User.findUsers = async function (result) {
+    mongoose.establecerConexion()
     const users = await User.find()
     if (users) {
         result(users, null)
@@ -64,6 +68,7 @@ User.findUsers = async function (result) {
 
 // Actualizar Usuario
 User.updateUser = async function (id, userToUpdate, result) {
+    mongoose.establecerConexion()
     const update = {
         username: userToUpdate.username,
         password: userToUpdate.password,
@@ -81,6 +86,7 @@ User.updateUser = async function (id, userToUpdate, result) {
 
 // Eliminar Usuario
 User.deleteUser = async function (id, result) {
+    mongoose.establecerConexion()
     await User.findByIdAndDelete(id)
         .then(function (userDeleted) {
             result(userDeleted, null)

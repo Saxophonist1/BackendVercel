@@ -72,7 +72,9 @@ const addMorganToLogger = morgan("combined", {
   stream: fs.createWriteStream("./logs/access.log", { flags: "a" }),
 })
 
-const List = ["http://127.0.0.1:3000"]
+const urlAtlas =  process.env.MONGODB_URI
+
+const List = ["http://127.0.0.1:3000","http://localhost:3000","http://127.0.0.1:8000","https://projectvercel-mu.vercel.app"]
 const CorsList = {
   origin: (origin, callback) => {
     console.log(origin)
@@ -105,6 +107,11 @@ app.use((req, res, next) => {
 })
 
 app.use(addMorganToLogger)
+
+async function conectarMongoDB(){
+  //CAMBIAR CADENA DE CONEXIÓN SEGÚN SE DESEE
+  return mongoose.connect(urlAtlas)
+}
 
 app.use("/a", morgan("tiny"))
 app.use(function (req, res, next) {

@@ -2,7 +2,8 @@ const mongoose = require("mongoose")
 const mongoConnection = mongoose.createConnection()
 
 mongoConnection.conectarMongoDB = async () => {
-    return mongoose.connect("mongodb://127.0.0.1:27017/Empresa")
+    //return mongoose.connect("mongodb://127.0.0.1:27017/Empresa")
+    return mongoose.connect(process.env.MONGODB_URI)
 }
 
 mongoConnection.establecerConexion = async function () {

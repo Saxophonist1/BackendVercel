@@ -18,7 +18,8 @@ const empresaSchema = new mongoose.Schema({
 
 const Empresa = mongoose.model("Empresa", empresaSchema)
 
-Empresa.findAllCompanies = async function(result){   
+Empresa.findAllCompanies = async function(result){  
+    mongoose.establecerConexion() 
     await Empresa.find((error, empresas) => {
         if (error) {
             result(error, null)
@@ -29,6 +30,7 @@ Empresa.findAllCompanies = async function(result){
 }
 
 Empresa.findCompaniesById = async function (id, result) {
+    mongoose.establecerConexion()
     await Empresa.find({ _id: id }, (error, empresa) => {
         if (error) {
             result(error, null)
@@ -39,6 +41,7 @@ Empresa.findCompaniesById = async function (id, result) {
 }
 
 Empresa.createCompany = async function (newEmpresa, result) {
+    mongoose.establecerConexion()
     await newEmpresa.save((error, empresaCreated) => {
         if (error) {
             result(error, null)
@@ -49,6 +52,7 @@ Empresa.createCompany = async function (newEmpresa, result) {
 }
 
 Empresa.updateCompany = async function (id, empresaToUpdate, result) {
+    mongoose.establecerConexion()
     await Empresa.findByIdAndUpdate(
         id,
         empresaToUpdate,
@@ -64,6 +68,7 @@ Empresa.updateCompany = async function (id, empresaToUpdate, result) {
 }
 
 Empresa.deleteCompany = async function (id, result) {
+    mongoose.establecerConexion()
     await Empresa.findByIdAndDelete(id, (error, empresaDeleted) => {
         if (error) {
             result(error, null)

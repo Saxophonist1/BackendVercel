@@ -1,6 +1,11 @@
+const express = require("express")
+const app = express()
 const log4js = require("log4js") //npm i log4js
+require("dotenv").config()
 
-log4js.configure({
+if(app.get("env") == "development"){
+    console.log("Configure Logger")
+    log4js.configure({
     appenders: {
         access: {
             type:"dateFile",
@@ -17,8 +22,9 @@ log4js.configure({
         default: { appenders: ["access"], level: "ALL"},
         access: { appenders: ["access"], level:"ALL"},
         error: { appenders: ["error"], level:"ALL"}
-    }
-})
+        }
+    })
+}
 
 const acceso = log4js.getLogger("access")
 const err = log4js.getLogger("error")
