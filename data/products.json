@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Fanta",
+    "description": "La empresa de Fanta cuesta unos <span class=\"label label-info\">100.000.000€</span> en el mercado actual",
+    "price": 100
+  },
+  {
+    "id": 2,
+    "title": "La Liga",
+    "description": "La empresa de La Liga cuesta aproximadamente casi <span class=\"label label-info\">15.000.000€</span> a día de hoy",
+    "price": 15
+  },
+  {
+    "id": 3,
+    "title": "Mercadona",
+    "description": "La empresa Mercadona cuesta <span class=\"label label-info\">14.117.000€</span> por el momento",
+    "price": 14
+  }
+]

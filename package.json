@@ -1,0 +1,40 @@
+{
+  "name": "gestor_empresas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "child_process": "^1.0.2",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-mysql-session": "^3.0.0",
+    "express-session": "^1.17.3",
+    "exrpess": "^0.0.1-security",
+    "generate-api-key": "^1.0.2",
+    "hbs": "^4.2.0",
+    "https": "^1.0.0",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.2",
+    "log4js": "^6.9.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.0.3",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.0.2",
+    "npm": "^10.4.0",
+    "passport-google-oauth2": "^0.2.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.5.0"
+  }
+}
